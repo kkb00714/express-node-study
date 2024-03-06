@@ -229,5 +229,4 @@ for (let i = 1; i < 5; i++) {
         continue;
     }
     // console.log('after!', i);
-}
-
+};
