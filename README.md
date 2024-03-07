@@ -108,7 +108,22 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 ※ jsonwebtoken : 로그인한 유저 정보를 토큰으로 만들기 위해 사용
 
 
+----------------------------------
 
+# 간단한 REST API 작성
+
+※ Application Level 미들웨어 작성하기
+
+※ app.use() 사용 방법 (크게 2가지)
+    - app.use(helmet()); // 미들웨어를 넣으면 미들웨어로 사용
+    - app.use("/users", router); // 라우터로 사용
+
+    => app.use()는 활용하는 방법이 많음!
+
+※ app.get / app.post / app.patch / app.delete
+    => GET, POST, PATCH, DELETE / 각각의 요청들을 받을 수 있음.
+
+※ 
 
 
 
