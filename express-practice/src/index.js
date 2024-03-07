@@ -60,7 +60,7 @@ let users = [
 // 성공 시 status : 200
 app.get("/users", (req, res) => {
     res.status(200).json({ users });
-});
+}); 
 
 // POST Method
 // 유저 생성
@@ -111,12 +111,6 @@ app.delete("/users/:id", (req, res) => {
 
     res.status(204).json({});
 });
-
-
-
-
-
-
 
 
 // req (request) : 요청 

@@ -123,7 +123,20 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 ※ app.get / app.post / app.patch / app.delete
     => GET, POST, PATCH, DELETE / 각각의 요청들을 받을 수 있음.
 
+
+    ** 라우터 간단 정리 ** 
+        - 라우터란? : 클라이언트의 요청에 대한 경로를 정해주는 역할
+            ex) 등록해놓은 엔드포인트로 이동
+
+        - 라우터 생성 
+        => import { Router } from "express";
+        => const router = Router();
+
+        router.get() / router.post() / router.patch() 등을 이용하여 경로와 함수 등록 가능
+
 ※ 
+
+
 
 
 
@@ -161,5 +174,13 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 
 ※ 루트파일 내에 src 파일을 생성하고 그 안에 index.js 파일 포함, 모든 소스코드를 옮겨 작성함
 
+
+※ yarn add cors helmet dayjs => 라이브러리 추가
+
+※ yarn add -D nodemon => 개발 환경에서만 사용되는 nodemon 은 -D 로 설치
+    => script 부분 실행 명령어 수정
+        => nodemon --exec babel-node src/index.js
+
+※ yarn add bcrypt jsonwebtoken => 보안을 위한 간단한 암호화 라이브러리 설치
 
 
