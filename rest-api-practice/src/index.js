@@ -2,6 +2,8 @@ import express, { Router } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import controllers from './controllers';
+import { swaggerDocs, options } from './swagger';
+import swaggerUi from "swagger-ui-express";
 
 
 const app = express();
@@ -57,6 +59,13 @@ controllers.forEach((controller) => {
     app.use(controller.path, controller.router);
     // 컨트롤러의 라우터를 등록함
 });
+
+
+// swagger 등록
+app.get("/swagger.json", (req, res) => {
+    res.status(200).json(swaggerDocs);
+});
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(undefined, options));
 
 app.get("/", (req, res) => {
     res.send("Node.js 화이팅");
