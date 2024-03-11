@@ -306,7 +306,97 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 
 # CRUD 쿼리
 
-    ※ 
+    * 지정해놓은 데이터베이스에 한함!
+
+    쿼리 작성 방법 => 데이터베이스 (lecture) 우클릭 - 새 SQL 편집기
+
+    ※ Create // 삽입하는 쿼리
+
+        INSERT INTO User (id, age, name, email, phoneNumber)
+        VALUES (1, 20, 'John', 'john@mail.com', '01012345678');
+
+        // 일부만 넣고 싶을 때
+        INSERT INTO User (name, email, phoneNumber)
+        VALUES ('John', 'john@mail.com', '01012345678');
+
+    
+
+    ※ Update // 
+
+        UPDATE User
+        SET age = 12
+        WHERE name = 'John';
+
+        UPDATE User
+        SET age = 21
+        WHERE id = 'id2';
+
+
+
+    ※ Delete //
+
+        DELETE FROM User 
+        WHERE id = 'id5';
+
+
+
+    ※ Get // 기본
+
+        SELECT *
+        FROM User
+
+        SELECT id, age, name
+        FROM User
+        WHERE id = 'id3'
+
+    ※ GET - count  //  조건에 맞는 수를 세어줌
+
+        SELECT count(*)
+        FROM User
+        Where phoneNumber = "01012345678"
+
+        => 1
+
+    ※ GET - orderBy  //  특정 조건을 기준으로 오름차순, 내림차순 정렬함.
+
+        SELECT *
+        FROM User
+        ORDER BY age ASC; or ORDER BY age DESC;
+        // ASC => 오름차순 , DESC => 내림차순
+
+        => 나이가 각각 적은 순서 , 많은 순서로 출력됨
+    
+
+    ※ GET - 페이징  //  해당하는 양만 데이터를 가져오는 것 ?
+
+        LIMIT : 얼마나 가져올지
+
+        OFFSET : 어디서부터 가져올지
+
+        SELECT *
+        FROM User
+        ORDER BY age ASC LIMIT 1;
+
+        => 오름차순으로 정렬한 age 의 값을 1 개만 가져오겠다는 의미
+
+        SELECT *
+        FROM User
+        ORDER BY age DESC
+        LIMIT 2 OFFSET 1;
+
+        => 나이를 내림차순으로 먼저 정렬 후
+        => 첫번째는 건너뛰고 불러올 것 (OFFSET 1 => 1개를 건너뛰고, LIMIT2 => 2개를 불러올 것)
+
+
+-------------------------------
+
+# 관계형 쿼리
+
+
+
+
+
+
 
 
 
