@@ -602,9 +602,35 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
         => 왜 Dependency로 추가? 
             -> 프리즈마가 CLI 명령어들로 결과물을 만들어낸 것을 볼 것이기 때문?
 
-    --------------------------------
+    ※ yarn prisma init
+        => 현재 프로젝트에 prisma를 사용하는 데 필요한 파일 생성
+            ex) prisma/schema.prisma, prisma/.env
+
+    ※ yarn prisma generate 
+        => prisma/schema.prisma 를 기반으로 Prisma Client 등의 자원 생성
+        => ☆☆ prisma/schema.prisma 수정 후 반드시 실행해야 함 ☆☆
+
+    ※ yarn prisma migrate dev
+        => schema.prisma 파일의 내용을 기반으로 DB 업데이트
+            1) migrate를 진행하면 DB에 _prisma_migrations 테이블이 생성 /수정됨
+            2) git 처럼 DB 수정 내역을 관리 가능함
+
+                ※※ yarn prisma migrate dev --create-only 를 통해
+                    => "" 실제 DB "" 에 반영하지 않고 migrations 파일 반영 가능
 
     ※ 
+    --------------------------------
+
+    ※ Prisma로 Database 연동하기!
+
+    mysql://{USER}:{PASSWORD}@{DB_URL}:{PORT}/{DATABASE_NAME}
+
+    -> mysql : 프로토콜
+    -> USER : DB 유저 이름
+    -> PASSWORD : DB 비밀번호
+    -> DB_URL : DB 주소
+    -> PORT : DB 포트
+    -> DATABASE_NAME : DB 이름
 
 
 
