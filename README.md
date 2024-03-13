@@ -110,6 +110,47 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 
 ----------------------------------
 
+# 프로젝트 시작 / 예시
+
+※ yarn init => 프로젝트 명시, 시작을 위해 package.json 작성
+
+※ yarn add express => express 프레임워크를 위해 설치
+
+※ yarn add -D @babel/cli @babel/core @babel/node @babel/preset-env
+
+※ package.json 에 babel 관련 내용 추가
+
+    "scripts": {
+        "test": "node index.js",
+        "dev": "babel-node index.js"
+    },
+    "dependencies": {
+        "@babel/cli": "^7.23.9",
+        "@babel/node": "^7.23.9",
+        "@babel/preset-env": "^7.24.0"
+    },
+    "babel": {
+        "presets": [
+        "@babel/preset-env"
+        ]
+    }
+    
+
+
+※ 루트파일 내에 src 파일을 생성하고 그 안에 index.js 파일 포함, 모든 소스코드를 옮겨 작성함
+
+
+※ yarn add cors helmet dayjs => 라이브러리 추가
+
+※ yarn add -D nodemon => 개발 환경에서만 사용되는 nodemon 은 -D 로 설치
+    => script 부분 실행 명령어 수정
+        => nodemon --exec babel-node src/index.js
+
+※ yarn add bcrypt jsonwebtoken => 보안을 위한 간단한 암호화 라이브러리 설치
+
+
+----------------------------------
+
 # 간단한 REST API 작성
 
 ※ Application Level 미들웨어 작성하기
@@ -308,6 +349,44 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 
     * 지정해놓은 데이터베이스에 한함!
 
+    -----------------------------------
+
+    INSERT INTO User (id, age, name, email, phoneNumber)
+    VALUES ('id', 20, 'John', 'john@mail.com', '01012345678');
+        
+    INSERT INTO User (id, age, name, email, phoneNumber)
+    VALUES ('id2', 12, 'mike', 'mike@mail.com', '01012341234');
+
+    INSERT INTO User (id, age, name, email, phoneNumber)
+    VALUES ('id3', 23, 'nyl', 'nyl@mail.com', '01012344321');
+
+    INSERT INTO User (id, age, name, email, phoneNumber)
+    VALUES ('id4', 42, 'Leopold', 'Leopold@mail.com', '01012341324');
+
+    INSERT INTO User (id, age, name, email, phoneNumber)
+    VALUES ('id5', 31, 'Harrison', 'Harrison@mail.com', '01012344231');
+
+
+    UPDATE User
+    SET age = 23
+    WHERE name = 'John';
+
+
+    DELETE FROM User 
+    WHERE id = 'id5';
+
+
+
+    SELECT *
+    FROM user
+
+    -- 
+    -- SELECT id, age, name
+    -- FROM User
+    -- WHERE id = 'id3'
+
+    -----------------------------------
+
     쿼리 작성 방법 => 데이터베이스 (lecture) 우클릭 - 새 SQL 편집기
 
     ※ Create // 삽입하는 쿼리
@@ -392,6 +471,16 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
 
 # 관계형 쿼리
 
+    -------------------------------------
+
+    INSERT INTO post2 (id, title, content, userid)
+    VALUES ("id1", "tilte1", "contnet1", "id2" );
+    => userid 부분은 user2 에 존재하는 실제 user의 id 를 입력
+
+
+
+    -------------------------------------
+
     ※ PK - Primary Key
         - 데이터를 구분하는 키
         - 중복을 허용하지 않음 (데이터를 구분하기 때문)
@@ -418,52 +507,45 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
             ※ 단, user 테이블에는 userId 값이 존재하지 않음!
             => ERD 에서 설명!
 
+        => pk에만 종속을 참조시킬 수 있다!
 
 
+    ※ Inner Join
+        : 유저 id와 포스트의 id가 둘 다 일치하는 것을 뽑아오는 것.
+
+        SELECT u.id, u.name,
+        p.id as postId, p.title
+        FROM user2 AS u     // 별명을 붙이는 것이라고 생각!
+        JOIN post2 AS p     // "
+        ON u.id = p.userId; 
+        => userid 에 맞는 post id 를 반환할 것.
+
+        // JOIN을 할 때는 조건을 걸 때 ON을 사용
+        // => 이 코드에서는 유저의 id와 post의 userid이 둘 다 가지고 있을 것만 뽑을 것.
 
 
+    ※ Left join
+        : postId 가 없는 user들은 포함시키지 않고 불러옴
+
+        select u.id, u.name, 
+        p.id as postId, p.title
+        from user2 as u
+        left join post2 as p    // 기존 join 에 left 추가
+        on u.id = p.userid;
 
 
+    ※ Right join
+        : userid 가 없는 것들도 NULL 값을 채워서 전부 가져옴
+
+        select u.id, u.name, 
+        p.id as postId, p.title
+        from user2 as u
+        right join post2 as p    // 기존 join 에 right 추가
+        on u.id = p.userid;
 
 
 -------------------------------
 
-# 프로젝트 시작 / 예시
+# ERD (Entity Relation Diagram)
 
-※ yarn init => 프로젝트 명시, 시작을 위해 package.json 작성
-
-※ yarn add express => express 프레임워크를 위해 설치
-
-※ yarn add -D @babel/cli @babel/core @babel/node @babel/preset-env
-
-※ package.json 에 babel 관련 내용 추가
-
-    "scripts": {
-        "test": "node index.js",
-        "dev": "babel-node index.js"
-    },
-    "dependencies": {
-        "@babel/cli": "^7.23.9",
-        "@babel/node": "^7.23.9",
-        "@babel/preset-env": "^7.24.0"
-    },
-    "babel": {
-        "presets": [
-        "@babel/preset-env"
-        ]
-    }
-    
-
-
-※ 루트파일 내에 src 파일을 생성하고 그 안에 index.js 파일 포함, 모든 소스코드를 옮겨 작성함
-
-
-※ yarn add cors helmet dayjs => 라이브러리 추가
-
-※ yarn add -D nodemon => 개발 환경에서만 사용되는 nodemon 은 -D 로 설치
-    => script 부분 실행 명령어 수정
-        => nodemon --exec babel-node src/index.js
-
-※ yarn add bcrypt jsonwebtoken => 보안을 위한 간단한 암호화 라이브러리 설치
-
-
+    ※ 
