@@ -1,9 +1,9 @@
 import React from 'react';
 
 // 함수형 컴포넌트
-function Home() {
+const Home = () => {
     return <h1>Home 화면 입니다.</h1>
-}
+};
 
 export default Home;
 
