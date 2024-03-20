@@ -1,8 +1,10 @@
-import express, { Router } from 'express'
-import cors from 'cors'
-import helmet from 'helmet'
+import express from "express"
+import cors from "cors"
+import helmet from "helmet"
 
-import UserController from '../routes/user';
+import Controllers from "./controllers";
+import { swaggerDocs, options } from "./swagger";
+import swaggerUi from "swagger-ui-express";
 
 const app = express();
 
@@ -14,7 +16,18 @@ app.use(express.urlencoded({ extended: true, limit: "700mb" }));
 
 
 // 유저 라우터 등록
-app.use("/users", UserController.router);
+// app.use("/users", UserController.router);
+
+Controllers.forEach((controller) => {
+    // 각 controller의 path와 router를 등록
+    app.use(controller.path, controller.router);
+});
+
+app.get("/swagger.json", (req, res) => {
+    res.status(200).json(swaggerDocs);
+});
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(undefined, options));
+
 
 app.get("/", (req, res) => {
     res.send("Node.js 화이팅");
