@@ -633,11 +633,92 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
     -> DATABASE_NAME : DB 이름
 
 
-
 --------------------------
+
+
+
+# 인증과 인가
+    ※ 인증과 인가
+        - 인증 (Authentication) : 사용자가 누구인지 확인
+            ex) 로그인, 회원가입
+        
+        - 인가 (Authorization) : 권한을 확인
+            ex) 내가 쓴 글 수정
+
+    ※ 인증 단계
+        <인증 단계>
+        1) 사용자 로그인
+        2) 서버는 회원가입한 회원인지 확인
+        3) 서버가 사용자 정보가 담긴 Access Token 생성
+            => 다시 로그인 할 때는 이 Access Token 으로 로그인
+        
+        <인가 단계>
+        4) 사용자 (프론트) 는 요청 시 Access Token 을 포함
+        5) 서버는 Access Token을 복호화
+        6) 해당 API를 사용할 수 있는지 확인
+
+    ※ Cookie 
+        - <key, value> 로 저장 (브라우저에)
+        - 보안이 허술 (브라우저가 해킹되면 정보가 새어나감)
+        - 브라우저 간 공유가 되지 않음
+
+    ※ Cookie + Session
+        - 클라이언트가 서버에게 로그인 정보를 주면 (쿠키 전달)
+        - 서버는 Session Storage에 회원에 대한 Session 생성을 요청 (쿠키 검증)
+        - Session Storage가 session ID를 발급 (정보 전달)
+        - 서버가 Session ID를 클라이언트에게 전달 (응답)
+
+        => 정보 탈취 시, 다른 사용자도 재로그인 해야 함 (서버가 재시작 하기 때문)
+        => http의 stateless 에 위배됨. 
+
+    ※ 이 때 등장한 JWT (Json Web Token)
+        : header, payload, verify signature 로 이루어져 있음
+
+        1) header 부분은 암호화 방식이 암호화 되어있음
+        2) payload 에는 암호화된 데이터가 들어있음
+        3) key를 통해 발급 / 유효성 검사 진행
+        4) 만료 기한 설정 가능
+        5) 비대칭 키 암호화 기능
+
+        => 클라이언트에게 정보를 받고, JWT(Access Token)를 전달
+        
+    ※ Cookie & Session 과 JWT 의 차이점
+        세션은 서버가 일정 세션을 열어놓아야 하지만, JWT는 요청이 올 때만 열어놓음.
+
+    ※ Access Token과 Refresh Token 두 개를 생성하는 이유
+        => Access token 이 만료되면 Refresh Token으로 Access Token을 다시 생성해줄 것을 요청
+
+
 
 # React 정리
 
+    ※ React란? 
+        => 사용자 인터페이스를 만들기 위한 자바 스크립트 라이브러리
+
+    ※ React 장점
+        - 빠른 업데이트 & 렌더링 속도
+        - Virtual Dom(Document Object Model)
+            => 하나의 웹 사이트에 대한 정보를 모두 담고 있음
+            => DOM을 직접 수정하는 것이 아니라, 업데이트 할 최소한의 DOM 만 찾아서 업데이트.
+        - Component-Based (컴포넌트 기반의 구조)
+            => 컴포넌트: 구성요소 의미
+            => React는 모든 페이지가 컴포넌트로 이루어져 있음
+        - 재사용성 (Reusability)
+        - 유지 보수가 용이함
+        - 활발한 지식공유 & 커뮤니티
+
+
+    ※ React 단점
+        - 사용하기 위해 방대한 정보들을 배워야 함
+        - 새로운 버전이 나올 때마다 바뀌는 점
+            == 새로운 것을 다시 공부해야 함
+        - 높은 상태관리 복잡도
+    
+    ※ JSX (A syntax extension to JavaScript), JavaScript Xml
+        => 자바 스크립트의 확장 문법
+        => JavaScript + XML / HTML을 합친 것것
+
+    ※ JSX 코드를 Javascript 코드로 변환하는 것이
+        => React의 createElement,,
+
     ※ 
-
-
