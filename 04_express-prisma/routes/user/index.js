@@ -4,7 +4,6 @@ import { Router } from "express";
 class UserController {
 
     router;
-
     users = [];
 
     constructor() {
@@ -30,22 +29,63 @@ class UserController {
     // 특정 유저 조회
 
     getUser(req, res){
+        const {id} = req.params;
 
+        const user = this.users.find((user) => user.id === String(id));
+
+        res.status(200).json({ user });
     }
 
     // 유저 생성
     createUser(req, res){
+        const { id, name, email, age } = req.body;
+
+        this.users.push({
+            id,
+            name,
+            age,
+            email,
+        });
+
+        res.status(201).json({ users : this.users});
 
     }
 
     // 유저 수정
     updateUser(req, res){
-
+        const { id }= req.params;
+        const { age, email } = req.body;
+    
+        const user = this.users.find(user => user.id === String(id));
+        
+        if (!user) {
+            return res.status(404).json({message : "해당 ID를 가진 사용자를 찾을 수 없습니다."});
+        } 
+    
+        if (age) user.age = age;
+        if (email) user.email = email;
+    
+        res.status(200).json({message : "사용자 정보가 성공적으로 수정되었습니다."});
     }
     
     // 유저 삭제
     deleteUser(req, res){
+        const { id } = req.params;
+
+        const userIndex = this.users.findIndex(user => user.id === String(id));
+    
+        if (userIndex === -1) {
+            return res.status(404).json({message : "해당 유저가 존재하지 않습니다."});
+        }
+    
+        this.users.splice(userIndex, 1);
+    
+        res.status(200).json({message : "사용자가 성공적으로 삭제되었습니다."});
 
     }
 
+    
 }
+
+const userController = new UserController();
+export default userController;
