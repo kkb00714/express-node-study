@@ -3,7 +3,7 @@ const defaultSwagger = {
     info: {
         version: "0.0.1",
         title: "스웨거 연습",
-        description: "Swagger 연습용 페이지입니다.",
+        description: "스웨거 연습이다 이말이야."
     },
 };
 

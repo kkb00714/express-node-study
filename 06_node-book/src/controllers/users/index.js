@@ -5,6 +5,7 @@ class UserController {
 
     router;
     path = "/users";
+
     users = [];
 
     constructor() {
