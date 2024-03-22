@@ -686,6 +686,32 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
         => Access token 이 만료되면 Refresh Token으로 Access Token을 다시 생성해줄 것을 요청
 
 
+--------------------------
+
+# DTO 란? 
+
+    ※ DTO (Data Transfer Object) : 데이터를 전송하는 객체 
+        => 클라이언트와 서버가 통신하는 과정에서 응답의 형식을 의미. 
+
+        ex) Client <== DTO ==> Controller <== DTO ==> Service
+        ★ DTO는 파일 간의 데이터를 주고 받는 형식이다!
+
+
+    ※ DAO => 데이터베이스 통신
+        ☆ 서비스에서 주로 데이터베이스와 통신을 할 때 쓰는 방식 (구조체)
+
+    ※ DTO => 계층 간 통신
+        ☆ 파일, 혹은 컨트롤러 서비스 계층 간에 통신을 할 때 사용
+
+    ※ VO => 값만 사용
+        ☆ 값을 지정을 해놓고 가져다 쓰는 방식으로 사용
+
+
+    ※ 
+
+
+
+
 
 # React 정리
 
