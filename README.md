@@ -603,6 +603,8 @@ npm install --global yarn : global 을 통해 컴퓨터에 패키지 설치
         => 현재 프로젝트에 prisma를 사용하는 데 필요한 파일 생성
             ex) prisma/schema.prisma, prisma/.env
 
+    ※ yarn add @prisma/client
+
     ※ yarn prisma generate 
         => prisma/schema.prisma 를 기반으로 Prisma Client 등의 자원 생성
         => ☆☆ prisma/schema.prisma 수정 후 반드시 실행해야 함 ☆☆
