@@ -6,9 +6,9 @@ import Controllers from "./controllers";
 import { swaggerDocs, options } from "./swagger";
 import swaggerUi from "swagger-ui-express";
 
+// import bcrypt from 'bcrypt';
 // import dotenv from 'dotenv';
-// const config = dotenv.config();
-// config.parsed();
+
 
 const app = express();
 

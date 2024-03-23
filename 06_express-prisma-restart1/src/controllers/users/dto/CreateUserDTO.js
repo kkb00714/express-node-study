@@ -4,22 +4,14 @@ export class CreateUserDTO {
     lastName;
     age;
     email;
+    password;
 
-    constructor (id, firstName, lastName, age, email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
-    }
-
-    getNewUser() {
-        return{
-            id: this.id,
-            firstName: this.firstName,
-            lastName : this.lastName,
-            age: this.age,
-            email: this.email,
-        };
+    constructor (user) {
+        this.id = user.id;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+        this.age = user.age;
+        this.email = user.email;
+        this.password = user.password;
     }
 }
