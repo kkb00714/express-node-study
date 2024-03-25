@@ -3,16 +3,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 
-const app = express();
+const userController = require('./controllers/userController');
 
-const users = [{
-    id: 'Leopold',
-    password: "Leopold123",
-    name: "Leopold Kronoa",
-    age: 29,
-    email: "Seoanjoa19@example.com",
-    phoneNumber: "01012345678"
-}];
+const app = express();
 
 app.use(cors());
 // cors 정책을 허용하기 위함
@@ -23,23 +16,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 
-app.get("/users/list", (req, res) => {
-    res.send(users);
+// app.get("/users/list", (req, res) => {
+//     res.send(users);
+// });
+
+// app.post("/users/register", (req, res) => {
+//     const { id, password, name, age, email, phoneNumber } = req.body;
+//     users.push({
+//         id,
+//         name,
+//         password,
+//         age,
+//         email,
+//         phoneNumber
+//     });
+//     return res.send('생성 성공');
+// })
+
+userController.forEach((controller) => {
+    // 각 controller의 path와 router를 등록
+    app.use(controller.path, controller.router);
 });
-
-app.post("/users/register", (req, res) => {
-    const { id, password, name, age, email, phoneNumber } = req.body;
-    users.push({
-        id,
-        name,
-        password,
-        age,
-        email,
-        phoneNumber
-    });
-    return res.send('생성 성공');
-})
-
 
 app.get("/", (req, res) => {
     res.send("회원가입 로그인 진짜 만들어보자고 ㄱㄱ");

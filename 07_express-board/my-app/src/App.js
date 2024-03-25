@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react';
 function App() {
   const [getUsers, setGetUsers] = useState(null); 
 
-  useEffect(() => {
+  const fetchData = () => {
+    // 등록 후에 사용자 목록 다시 가져오기
     fetch('http://localhost:8000/users/list')
       .then((response) => response.json())
       .then((data) => setGetUsers(data));
-  }, []);
+  };
+
+  useEffect(() => {fetchData()}, []);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
@@ -34,18 +37,13 @@ function App() {
         'Content-Type': 'application/json'
       }
     })
-    .then(() => {
-      // 등록 후에 사용자 목록 다시 가져오기
-      fetch('http://localhost:8000/users/list')
-        .then((response) => response.json())
-        .then((data) => setGetUsers(data));
-    });
+    .then(() => fetchData());
   };
 
   return (
     <div className="App">
 
-      <h2>리액트 회원가입 / 로그인 화면</h2>
+      <h2>리액트 회원가입 화면</h2>
       
       <form onSubmit={onSubmitHandler}>
         <input name="id"></input>
@@ -63,7 +61,7 @@ function App() {
         <input type="submit" value="유저 등록"></input>
       </form>
 
-      {getUsers?.map((user) => (
+      {/* {getUsers?.map((user) => (
         <div key={user.id}>
           <div>{user.id}</div>
           <div>{user.password}</div>
@@ -72,8 +70,8 @@ function App() {
           <div>{user.email}</div>
           <div>{user.phoneNumber}</div>
         </div>
-        
-      ))}
+  
+      ))} */}
 
     </div>
   );
