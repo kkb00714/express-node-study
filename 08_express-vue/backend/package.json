@@ -1,5 +1,5 @@
 {
-  "name": "08_express-vue",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -11,6 +11,13 @@
     "helmet": "^7.1.0",
     "jsonwebtoken": "^9.0.2"
   },
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/node": "^7.23.9",
+    "@babel/preset-env": "^7.24.3",
+    "nodemon": "^3.1.0"
+  },
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js"
   },
@@ -18,12 +25,5 @@
     "presets": [
       "@babel/preset-env"
     ]
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.24.1",
-    "@babel/core": "^7.24.3",
-    "@babel/node": "^7.23.9",
-    "@babel/preset-env": "^7.24.3",
-    "nodemon": "^3.1.0"
   }
 }
