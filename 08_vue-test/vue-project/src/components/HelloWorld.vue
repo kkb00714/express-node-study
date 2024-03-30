@@ -32,9 +32,9 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'HelloWorld', // 컴포넌트 이름
   props: {
-    msg: String
+    msg: String // 
   }
 }
 </script>
