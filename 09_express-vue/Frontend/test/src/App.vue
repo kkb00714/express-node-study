@@ -3,7 +3,14 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |
     <router-link to="/mainview">MainView</router-link> |
-    <router-link to="/RegisterView">RegisterView</router-link> |
+    <router-link to="/registerview">RegisterView</router-link> |
+    <router-link to="/loginview">LoginView</router-link> |
+  </nav>
+
+  <nav>
+    <router-link to="/popularartworks">PopularArtworks</router-link> |
+    <router-link to="/freeartworks">FreeArtworks</router-link> |
+    <router-link to="/popularartists">PopularArtists</router-link>
   </nav>
   <router-view/>
 </template>

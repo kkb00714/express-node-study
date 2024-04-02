@@ -9,13 +9,13 @@
 
       <!-- 로그인 / 회원가입 버튼 -->
       <div class="auth-buttons">
-        <router-link to="/login" class="btn btn-primary mr-2">로그인</router-link>
-        <router-link to="/RegisterView" class="btn btn-outline-primary">회원가입</router-link>
+        <router-link to="/loginview" class="btn btn-primary mr-2">로그인</router-link>
+        <router-link to="/registerview" class="btn btn-outline-primary">회원가입</router-link>
       </div>
     </div>
 
 
-    <div class="navi container" style="width: 70%;">
+    <div class="navi container" style="width: 80%;">
       <nav class="nav nav-pills flex-column flex-sm-row justify-content-center">
         <a class="col flex-sm-fill text-sm-center nav-link" href="#">글 / 소설</a>
         <a class="col flex-sm-fill text-sm-center nav-link" href="#">그림</a>
@@ -34,7 +34,6 @@
     </div>
 
     <div class="content">
-      <h2 class="welcom">어서오세요 홈페이지입미당</h2>
       <br>
       <div class="informations">
       <h5><router-link to="/notification"  class="gongji">[ 필독! ] 공지사항 및 필수 확인 사항입니다.</router-link> </h5>
@@ -45,11 +44,11 @@
       </div>
 
       <h3>홈페이지 간단 소개 &amp; 기능 소개</h3>
-
-        <div class="showDetail">
-          <p v-html="showFullText ? intro : introShort"></p>
-          <p><span @click="toggleFullText" class="read-more">{{ showFullText ? '...간략히 보기' : '...자세히 보기' }}</span></p>
-        </div>
+      <br>
+      <div class="showDetail">
+        <p v-html="showFullText ? intro : introShort"></p>
+        <p><span @click="toggleFullText" class="read-more">{{ showFullText ? '...간략히 보기' : '...자세히 보기' }}</span></p>
+      </div>
       <br>
       <br>
 
@@ -62,7 +61,7 @@
     
       <div class="currentPopularArtworks">
         <h2 class="popularArtworks">현재 인기 작품</h2>  
-        <a href="/popularRanking">인기순 바로가기</a>
+        <a href="/popularartworks">인기순 바로가기</a>
       </div>
       <br>
       <br>
@@ -71,7 +70,7 @@
       <br>
       <div class="currentFreeArtworks">
         <h2 class="freeArtworks">현재 무료 작품</h2>
-        <a href="/freeRanking">무료순 바로가기</a>
+        <a href="/freeartworks">무료순 바로가기</a>
       </div>
       <br>
       <br>
@@ -81,7 +80,7 @@
 
       <div class="creators">
         <h2 class="allCreators">인기 작가</h2>
-        <a href="/allCreators">작가 모두 보기</a>
+        <a href="/popularartists">작가 모두 보기</a>
       </div>
       <br>
       <div class="ranking">
@@ -117,9 +116,16 @@
           <li>작가 20</li>
         </ul>
       </div>
+      <br>
+      <br>
 
+      <div class="footer">
+        <h1>Footer</h1>
+      </div>
+      <br>
+      <br>
+      
     </div>
-    
   </div>
 </template>
 
