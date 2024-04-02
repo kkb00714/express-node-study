@@ -3,7 +3,7 @@
     <h1>회원가입</h1>
     <form @submit.prevent="registerUser">
       <label for="id">ID:</label>
-      <input type="text" id="id" v-model="user.id" required>
+      <input type="text" id="id" v-model="user.username" required>
       <label for="password">Password:</label>
       <input type="password" id="password" v-model="user.password" required>
       <label for="name">이름:</label>
