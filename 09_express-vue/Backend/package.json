@@ -9,7 +9,8 @@
     "dayjs": "^1.11.10",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
-    "jsonwebtoken": "^9.0.2"
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.1",
