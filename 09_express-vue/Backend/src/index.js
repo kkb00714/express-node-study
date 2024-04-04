@@ -2,10 +2,17 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
+const session = require('express-session')
 
 const userController = require('./controllers/userController');
 
 const app = express();
+
+app.use(session({
+    secret : '!@#%@!$@#&(%^/+-@!@!',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use(cors());
 // cors 정책을 허용하기 위함

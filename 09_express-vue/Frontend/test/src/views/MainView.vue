@@ -8,13 +8,16 @@
       <a href="/mainview" class="selectP h5 text-dark">프로젝트 이름</a>
 
       <!-- 로그인 / 회원가입 버튼 -->
-      <div class="auth-buttons">
+      <div v-if="!isLoggedIn" class="auth-buttons">
         <router-link to="/loginview" class="btn btn-primary mr-2">로그인</router-link>
         <router-link to="/registerview" class="btn btn-outline-primary">회원가입</router-link>
       </div>
+      <div v-else>
+        <router-link to="/loginview" @click="logoutUser" class="btn btn-outline-primary">로그아웃</router-link>
+      </div>
     </div>
 
-
+    <!-- 네비게이션 -->
     <div class="navi container" style="width: 80%;">
       <nav class="nav nav-pills flex-column flex-sm-row justify-content-center">
         <a class="col flex-sm-fill text-sm-center nav-link" href="#">글 / 소설</a>
@@ -33,6 +36,7 @@
       </nav>
     </div>
 
+    <!-- 메인 컨텐츠 -->
     <div class="content">
       <br>
       <div class="informations">
@@ -43,6 +47,7 @@
       <br>
       </div>
 
+      <!-- 홈페이지 소개 & 사진 -->
       <h3>홈페이지 간단 소개 &amp; 기능 소개</h3>
       <br>
       <div class="showDetail">
@@ -52,13 +57,15 @@
       <br>
       <br>
 
+      <!-- 검색 바 -->
       <div class="searchBar">
         <input type="text" id="searchInput" placeholder="검색어를 입력하세요...">
         <span class="searchThis" onclick="search()">🔍</span>
       </div>
       <br>
       <br>
-    
+
+      <!-- 현재 인기 작품 & 바로가기 -->
       <div class="currentPopularArtworks">
         <h2 class="popularArtworks">현재 인기 작품</h2>  
         <a href="/popularartworks">인기순 바로가기</a>
@@ -68,6 +75,7 @@
 
       <br>
       <br>
+      <!-- 현재 무료 작품 & 바로가기 -->
       <div class="currentFreeArtworks">
         <h2 class="freeArtworks">현재 무료 작품</h2>
         <a href="/freeartworks">무료순 바로가기</a>
@@ -78,6 +86,7 @@
       <br>
       <br>
 
+      <!-- 현재 인기 작가 & 바로가기 -->
       <div class="creators">
         <h2 class="allCreators">인기 작가</h2>
         <a href="/popularartists">작가 모두 보기</a>
@@ -119,6 +128,7 @@
       <br>
       <br>
 
+      <!-- Footer -->
       <div class="footer">
         <h1>Footer</h1>
       </div>
@@ -130,6 +140,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -138,12 +150,48 @@ export default {
       
     };
   },
+
   computed: {
     introShort() {
       return this.intro.replace(/<br>/g, " ").slice(0, 25);
+    },
+    isLoggedIn() {
+      // 로컬 스토리지에서 isLoggedIn 값을 가져옴
+      return localStorage.getItem('isLoggedIn') === 'true';
     }
   },
+
   methods: {
+    async loginUser() {
+      try {
+        // 로그인 요청 보내기
+        const response = await axios.post('/users/login', { username: this.username, password: this.password });
+        if (response.status === 200) {
+          // 로그인 성공 시 isLoggedIn 값을 true로 변경
+          localStorage.setItem('isLoggedIn', 'true');
+        } else {
+          console.error('로그인 실패 : ', response.data.error);
+        }
+      } catch (error) {
+        console.error('로그인 요청 중 에러 발생: ', error);
+      }
+    },
+
+    async logoutUser() {
+      try {
+        // 로그아웃 요청 보내기
+        const response = await axios.post('/users/logout');
+        if (response.status === 200) {
+          localStorage.setItem('isLoggedIn', 'false');
+        } else {
+          console.error('로그아웃 실패 : ', response.data.error);
+        }
+      } catch (error) {
+          console.error('로그아웃 요청 중 에러 발생: ', error);
+      }
+      
+    },
+
     toggleFullText() {
       this.showFullText = !this.showFullText;
     },

@@ -6,26 +6,19 @@ const mysql = require('mysql')
 class UserController {
     router;
     path = "/users";
+    commonUsers = [];
 
     constructor() {
         this.router = Router();
         this.init();
-        // this.users.push({
-        //     id: 'Leopold',
-        //     password: "Leopold123",
-        //     name: "Leopold",
-        //     age: 29,
-        //     email: "Seoanjoa19@example.com",
-        //     phoneNumber: "010-1234-5678"
-        // });
     }
 
     init() {
         this.router.get("", this.userLogin.bind(this)),
         this.router.get("/list", this.getUsers.bind(this)),
         this.router.post("/register", this.userRegister.bind(this)),
-        this.router.get("/login", this.userLogin.bind(this)),
-        this.router.get("/logout", this.userLogout.bind(this));
+        this.router.post("/login", this.userLogin.bind(this)),
+        this.router.post("/logout", this.userLogout.bind(this));
     }
 
     connection = mysql.createConnection({
@@ -43,14 +36,10 @@ class UserController {
         
     }
 
-    // 회원가입, 로그인 메인 페이지
+    // 메인 페이지 기능 - 회원가입, 로그인, 로그아웃 + 유저 조회
 
-    userLogin (req, res, next) {
-        res.send("회원가입, 로그인 선택 페이지 입니다.");
-    }
-
-    // 유저 회원가입 (create)
-
+    // 일반 유저 부분
+    // 회원가입
     async userRegister (req, res, next) {
         try {
             const { username, password, name, age, email, phoneNumber } = req.body;
@@ -69,17 +58,54 @@ class UserController {
             console.log('회원가입 오류: ', error);
             res.status(500).json({error: '서버 오류' });
         }
-        
-        
     }
 
 
+    // 로그인
+    async userLogin (req, res, next) {
+        const { username, password } = req.body;
+        this.connection.query('SELECT * FROM users WHERE username = ?', [username], async (error, results) => {
+            if (error) {
+                console.log('로그인 오류', error);
+                res.status(500).json({ error: '서버 오류' });
+                return;
+            }
+            if (results.length === 0) {
+                res.status(404).json({ error: '사용자가 존재하지 않습니다.' });
+                return;
+            }
+            const user = results[0];
+            const passwordMatch = await bcrypt.compare(password, user.password);
+            if (!passwordMatch) {
+                res.status(401).json({ error: '비밀번호가 틀렸습니다.' });
+                return;
+            }
+            res.status(200).json({ message: '로그인 성공' });
+        });
+    }
 
+
+    // 로그아웃
     userLogout(req, res, next) {
-        res.send('로그아웃')
+        if (req.session) {
+            delete req.session.user;
+            res.status(200).json({ message: '로그아웃이 완료되었습니다.' })
+        } else {
+            res.status(500).json({ message: '로그아웃에 실패했습니다.' })
+        }
     }
 
 }
+
+// -----------------------------------------------
+
+// Creator 부분 
+// 회원가입
+
+// 로그인
+
+// 로그아웃
+
 
 const userController = new UserController();
 module.exports = userController; 
