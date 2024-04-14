@@ -94,7 +94,7 @@
       <br>
       <div class="ranking">
         <ul class="jakka">
-          <li>작가 1</li>
+          <li a href="/{{ creator.username }}">작가 1</li>
           <li>작가 2</li>
           <li>작가 3</li>
           <li>작가 4</li>

@@ -14,6 +14,10 @@
       <input type="email" id="email" v-model="user.email" required>
       <label for="phoneNumber">전화번호:</label>
       <input type="tel" id="phoneNumber" v-model="user.phoneNumber" required>
+      <select id="userType" v-model="user.userType" required>
+        <option value="commonUser">일반 사용자</option>
+        <option value="creator">크리에이터</option>
+      </select>
       <button type="submit">회원가입</button>
     </form>
   </div>
@@ -31,7 +35,8 @@ export default {
         name: '',
         age: null,
         email: '',
-        phoneNumber: ''
+        phoneNumber: '',
+        userType: 'commonUser'
       }
     };
   },

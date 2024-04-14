@@ -5,8 +5,8 @@ const mysql = require('mysql')
 // Router
 class UserController {
     router;
-    path = "/users";
-    commonUsers = [];
+    path = "/users"; // 사용자 관련 API의 기본 경로
+    commonUsers = []; // 공통 사용자 목록을 저장할 배열
 
     constructor() {
         this.router = Router();
@@ -14,6 +14,7 @@ class UserController {
     }
 
     init() {
+        // 라우터의 경로 및 해당 결호에 대한 메서드를 연결
         this.router.get("", this.userLogin.bind(this)),
         this.router.get("/list", this.getUsers.bind(this)),
         this.router.post("/register", this.userRegister.bind(this)),
@@ -31,20 +32,22 @@ class UserController {
 
     // 유저 목록 조회 (read) => 확인용 (페이지 등록 x)
     getUsers(req, res, next) {
-        // res.status(200).json({ users: this.users });
         res.send(this.users);
-        
-    }
+    }1
 
     // 메인 페이지 기능 - 회원가입, 로그인, 로그아웃 + 유저 조회
 
     // 일반 유저 부분
     // 회원가입
+    
     async userRegister (req, res, next) {
         try {
-            const { username, password, name, age, email, phoneNumber } = req.body;
+            const { username, password, name, age, email, phoneNumber, userType } = req.body;
+            // 요청에서 필요한 정보 추출
             const hashedPassword = await bcrypt.hash(password, 10);
-            const newUser = { username, password: hashedPassword, name, age, email, phoneNumber };
+            // 비밀번호 해싱
+            const newUser = { username, password: hashedPassword, name, age, email, phoneNumber, userType };
+            // 새로운 사용자 객체 생성
             
             this.connection.query('INSERT INTO users SET ?', newUser, (error, results) => {
                 if (error) {
