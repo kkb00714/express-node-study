@@ -1,3 +1,5 @@
+// 일반 유저 부분 (기본적인 정보들만 입력)
+
 const { Router } = require('express');
 const bcrypt = require('bcrypt');
 const mysql = require('mysql')
@@ -26,8 +28,7 @@ class UserController {
         host: 'localhost',
         user: 'root',
         password: '',
-        database: 'usertestdb',
-        authPlugin: 'mysql_native_password'
+        database: 'usertestdb'
     });
 
     // 유저 목록 조회 (read) => 확인용 (페이지 등록 x)
@@ -36,8 +37,6 @@ class UserController {
     }1
 
     // 메인 페이지 기능 - 회원가입, 로그인, 로그아웃 + 유저 조회
-
-    // 일반 유저 부분
     // 회원가입
     
     async userRegister (req, res, next) {
@@ -99,16 +98,6 @@ class UserController {
     }
 
 }
-
-// -----------------------------------------------
-
-// Creator 부분 
-// 회원가입
-
-// 로그인
-
-// 로그아웃
-
 
 const userController = new UserController();
 module.exports = userController; 
