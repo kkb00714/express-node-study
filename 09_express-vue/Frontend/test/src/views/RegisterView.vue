@@ -39,7 +39,7 @@ export default {
         id: '',
         password: '',
         name: '',
-        age: null,
+        age: '',
         email: '',
         phoneNumber: '',
         userType: 'commonUser'

@@ -57,6 +57,11 @@ const routes = [
     path: '/creator_register',
     name: 'CreatorRegister',
     component: CreatorRegister
+  },
+  {
+    path: '/creator_view',
+    name: 'CreatorView',
+    component: CreatorView
   }
 ]
 

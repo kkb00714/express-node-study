@@ -13,6 +13,10 @@
     <router-link to="/popularartists">PopularArtists</router-link> |
     <router-link to="/creator_register">CreatorRegister</router-link>
   </nav>
+
+  <nav>
+    <router-link to="/creator_view">CreatorView</router-link> |
+  </nav>
   <router-view/>
 </template>
 

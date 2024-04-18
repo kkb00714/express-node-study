@@ -15,8 +15,8 @@ class CreatorController {
     }
 
     init() {
-        this.router.get("", this.creatorLogin.bind(this));
-        this.router.get("/list", this.getCreators.bind(this));
+        this.router.get("/", this.creatorLogin.bind(this));
+        this.router.get("/:username", this.getCreators.bind(this));
         this.router.post("/register", this.creatorRegister.bind(this));
         this.router.post("/login", this.creatorLogin.bind(this));
         this.router.post("/logout", this.creatorLogout.bind(this));
@@ -29,9 +29,16 @@ class CreatorController {
         database: 'usertestdb'
     });
 
-    // 크리에이터 목록 조회
+    // 크리에이터 상세보기 
     getCreators(req, res, next) {
-        res.send(this.creators);
+        try {
+            const { username } = req.body;
+            // 크리에이터 값 클릭 시 username 을 함께 받아옴
+            
+
+        } catch (error) {
+            
+        }
     }
 
     async creatorRegister(req, res, next) {
