@@ -6,6 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import PopularArtworks from '../views/PopularArtworks.vue'
 import FreeArtworks from '../views/FreeArtworks.vue'
 import PopularArtists from '../views/PopularArtists.vue'
+import CreatorRegister from '../views/CreatorRegister.vue'
 
 
 const routes = [
@@ -51,6 +52,11 @@ const routes = [
     path: '/popularartists',
     name: 'PopularArtists',
     component: PopularArtists
+  },
+  {
+    path: '/creator_register',
+    name: 'CreatorRegister',
+    component: CreatorRegister
   }
 ]
 

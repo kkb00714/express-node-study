@@ -10,7 +10,8 @@
   <nav>
     <router-link to="/popularartworks">PopularArtworks</router-link> |
     <router-link to="/freeartworks">FreeArtworks</router-link> |
-    <router-link to="/popularartists">PopularArtists</router-link>
+    <router-link to="/popularartists">PopularArtists</router-link> |
+    <router-link to="/creator_register">CreatorRegister</router-link>
   </nav>
   <router-view/>
 </template>

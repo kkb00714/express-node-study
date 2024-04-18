@@ -3,21 +3,27 @@
     <h1>회원가입</h1>
     <form @submit.prevent="registerUser">
       <label for="id">ID:</label>
-      <input type="text" id="id" v-model="user.username" required>
+      <input type="text" id="id" v-model="user.username" required><br>
+
       <label for="password">Password:</label>
-      <input type="password" id="password" v-model="user.password" required>
+      <input type="password" id="password" v-model="user.password" required><br>
+
       <label for="name">이름:</label>
-      <input type="text" id="name" v-model="user.name" required>
+      <input type="text" id="name" v-model="user.name" required><br>
+
       <label for="age">나이:</label>
-      <input type="number" id="age" v-model="user.age" required>
+      <input type="number" id="age" v-model="user.age" required><br>
+
       <label for="email">이메일:</label>
-      <input type="email" id="email" v-model="user.email" required>
+      <input type="email" id="email" v-model="user.email" required><br>
+
       <label for="phoneNumber">전화번호:</label>
-      <input type="tel" id="phoneNumber" v-model="user.phoneNumber" required>
+      <input type="tel" id="phoneNumber" v-model="user.phoneNumber" required><br>
+      
       <select id="userType" v-model="user.userType" required>
         <option value="commonUser">일반 사용자</option>
-        <option value="creator">크리에이터</option>
       </select>
+      <br>
       <button type="submit">회원가입</button>
     </form>
   </div>
