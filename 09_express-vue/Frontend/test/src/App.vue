@@ -1,4 +1,5 @@
 <template>
+  <h3>보기 쉬운 링크</h3>
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/about">About</router-link> |

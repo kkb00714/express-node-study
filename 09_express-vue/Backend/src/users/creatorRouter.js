@@ -34,10 +34,25 @@ class CreatorController {
         try {
             const { username } = req.body;
             // 크리에이터 값 클릭 시 username 을 함께 받아옴
-            
-
+            this.connection.query('SELECT name, email FROM creators WHERE username = ?', [username], (error, results, fields) => {
+                if (error) {
+                    console.error('크리에이터 정보를 가져오는 중 에러 발생:', error);
+                    res.status(500).json({ error: '서버 에러: 크리에이터 정보를 가져오는 중 에러 발생' });
+                    return;
+                }
+    
+                // 쿼리 결과가 없으면 작가를 찾을 수 없는 것이므로 404 에러를 응답으로 보냅니다.
+                if (results.length === 0) {
+                    res.status(404).json({ error: '작가를 찾을 수 없습니다.' });
+                    return;
+                }
+    
+                // 쿼리 결과가 있으면 작가의 이름(name)과 이메일(email)을 응답에 포함하여 보냅니다.
+                res.json({ name: results[0].name, email: results[0].email });
+            });
         } catch (error) {
-            
+            console.error('크리에이터 정보를 가져오는 중 에러 발생:', error);
+            res.status(500).json({ error: '서버 에러: 크리에이터 정보를 가져오는 중 에러 발생' });
         }
     }
 

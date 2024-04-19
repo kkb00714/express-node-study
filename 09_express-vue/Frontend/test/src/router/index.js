@@ -7,6 +7,7 @@ import PopularArtworks from '../views/PopularArtworks.vue'
 import FreeArtworks from '../views/FreeArtworks.vue'
 import PopularArtists from '../views/PopularArtists.vue'
 import CreatorRegister from '../views/CreatorRegister.vue'
+import CreatorView from '../views/CreatorView.vue'
 
 
 const routes = [
