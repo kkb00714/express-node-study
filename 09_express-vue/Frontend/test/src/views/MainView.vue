@@ -94,7 +94,7 @@
       <br>
       <div class="ranking">
         <ul class="jakka">
-          <li a href="/{{ creator.username }}">작가 1</li>
+          <li><router-link to="/creator_view/{{ creator.username }}">{{ creator.name }}</router-link></li>
           <li>작가 2</li>
           <li>작가 3</li>
           <li>작가 4</li>
@@ -146,8 +146,10 @@ export default {
   data() {
     return {
       showFullText: false,
-      intro: "<br> Select P는 6조의 캡스톤 디자인 프로젝트로, <br>창작물에 대한 공유, 구입 &amp; 판매, <br> 그리고 경매에 대한 기능이 있는 웹 사이트 입니다. <br> 자세히 보기를 원하시면...."
-      
+      intro: "<br> Select P는 6조의 캡스톤 디자인 프로젝트로, <br>창작물에 대한 공유, 구입 &amp; 판매, <br> 그리고 경매에 대한 기능이 있는 웹 사이트 입니다. <br> 자세히 보기를 원하시면....",
+      username: '',
+      password: '',
+      creator: {}
     };
   },
 
@@ -192,6 +194,21 @@ export default {
       
     },
 
+    async getCreatorInfo() {
+      try {
+        // 작가의 username을 이용하여 작가 정보를 요청
+        const username = this.$route.params.username;
+        const response = await axios.get(`/creators/${username}`);
+
+        // 요청이 성공하면 작가 정보를 데이터에 저장
+        this.creator = response.data;
+        this.creator.name = response.data.name;
+      } catch (error) {
+        console.error('작가 정보를 가져오는 중 에러 발생:', error);
+        
+      }
+    },
+
     toggleFullText() {
       this.showFullText = !this.showFullText;
     },
@@ -204,6 +221,8 @@ export default {
       window.location.href = "https://example.com/search?q=" + encodeURIComponent(searchKeyword);
     }
   }
+  
+
 };
 
 

@@ -60,7 +60,7 @@ const routes = [
     component: CreatorRegister
   },
   {
-    path: '/creator_view',
+    path: '/creator_view/:username',
     name: 'CreatorView',
     component: CreatorView
   }
